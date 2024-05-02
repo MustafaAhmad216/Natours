@@ -7,6 +7,7 @@ const mongoSanitize = require('express-mongo-sanitize');
 const xss = require('xss-clean');
 const hpp = require('hpp');
 const cookieParser = require('cookie-parser');
+const compression = require('compression');
 
 const tourRouter = require('./Routes/tourRoutes');
 const userRouter = require('./Routes/userRoutes');
@@ -103,11 +104,12 @@ app.use(
 	}),
 );
 
+//compressing all texts send to clients
+app.use(compression());
 
 //Public Test middleware
 app.use((req, res, next) => {
 	req.requestTime = new Date().toString();
-	// console.log(req.cookies);
 	next();
 });
 

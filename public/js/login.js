@@ -14,7 +14,6 @@ export const login = async (email, password) => {
 		if (res.data.status === 'Success') {
 			showAlert('success', 'Logged In Successfully!😀');
 			window.setTimeout(() => {
-				console.log('DONE');
 				location.assign('http://127.0.0.1:3000/');
 			}, 2000);
 		}

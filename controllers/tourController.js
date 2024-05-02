@@ -65,7 +65,6 @@ exports.resizeTourImages = catchAsync(async(req, res, next) => {
 		req.body.images.push(filename);
 	}));
 	
-	console.log(req.body.images);
 	next();
 
 });
@@ -125,11 +124,6 @@ exports.getTourStats = catchAsync(async (req, res, next) => {
 		},
 	});
 })
-
-
-// const data = new Date('2021-07-20T08:00:00.000Z');
-// console.log(data.getFullYear());
-// console.log(data.toISOString().substring(0,10));
 
 exports.getMonthlyPlan = catchAsync(async (req, res, next) =>{
 	const year =+req.params.year;

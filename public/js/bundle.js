@@ -6011,7 +6011,6 @@ function () {
           if (res.data.status === 'Success') {
             (0, _alerts.showAlert)('success', 'Logged In Successfully!😀');
             window.setTimeout(function () {
-              console.log('DONE');
               location.assign('http://127.0.0.1:3000/');
             }, 2000);
           }
@@ -6227,26 +6226,25 @@ function () {
 
         case 4:
           session = _context.sent;
-          console.log(session); //2) Use Stripe object to create checkout form + charge the credit card
+          //2) Use Stripe object to create checkout form + charge the credit card
           // await stripe.redirectToCheckout({
           //     sessionId: session.data.session.id,
           // });                      //DEPRECATED
-
           location.assign(session.data.session.url);
-          _context.next = 13;
+          _context.next = 12;
           break;
 
-        case 9:
-          _context.prev = 9;
+        case 8:
+          _context.prev = 8;
           _context.t0 = _context["catch"](1);
           console.log(_context.t0);
           (0, _alerts.showAlert)('error', _context.t0.message);
 
-        case 13:
+        case 12:
         case "end":
           return _context.stop();
       }
-    }, _callee, null, [[1, 9]]);
+    }, _callee, null, [[1, 8]]);
   }));
 
   return function bookTour(_x) {

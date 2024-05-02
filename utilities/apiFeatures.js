@@ -13,14 +13,12 @@ class ApiFeatures {
 		//1B) Advanced Filtering
 		let queryStr = JSON.stringify(queryObj);
 		queryStr = queryStr.replace(/\b(gte|gt|lte|lt|ne)\b/g, (match) => `$${match}`);
-		console.log(queryStr);
 		this.query.find(JSON.parse(queryStr));
 		return this;
 	}
 	sort() {
 		if (this.queryString.sort) {
 			const sortBy = this.queryString.sort.split(',').join(' ');
-			console.log(sortBy);
 			this.query = this.query.sort(sortBy);
 		} else {
 			this.query = this.query.sort('-createdAt');
