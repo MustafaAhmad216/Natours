@@ -15,7 +15,8 @@ const bookingRouter = require('./Routes/bookingRoutes');
 const viewRouter = require('./Routes/viewRoutes');
 const globalErrorHandler = require('./controllers/errorController');
 const AppError = require('./utilities/appError');
-
+/*********************************************************************/
+//Start Express App
 const app = express();
 
 //Setting up Pug as the template engine
