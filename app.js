@@ -8,6 +8,7 @@ const xss = require('xss-clean');
 const hpp = require('hpp');
 const cookieParser = require('cookie-parser');
 const compression = require('compression');
+const cors = require('cors');
 
 const tourRouter = require('./Routes/tourRoutes');
 const userRouter = require('./Routes/userRoutes');
@@ -28,6 +29,11 @@ app.set('views', path.join(__dirname, 'views'));
 
 /****************************************************************/
 // 1) Global Middlewares
+
+//Implement CORS
+app.use(cors());		//Access Controll Allow Origin * , works for simple requests (get & post)
+
+app.options('*', cors());
 
 //accessing all static files inside public folder
 app.use(express.static(path.join(__dirname, 'public')));
