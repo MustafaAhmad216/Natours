@@ -8,7 +8,12 @@ const router = express.Router();
 
 //Every Pages Must Be Accessed By A LoggedIn User
 
-router.get('/', authController.isLoggedIn, bookingController.createBookingCheckout, viewsController.getOverview);
+router.get(
+	'/',
+	authController.isLoggedIn,
+	// bookingController.createBookingCheckout,
+	viewsController.getOverview,
+);
 router.get('/tour/:slug', authController.isLoggedIn, viewsController.getTour);
 router.get('/login', authController.isLoggedIn, viewsController.getLoginForm);
 router.get('/me', authController.protect, viewsController.getAccount);
