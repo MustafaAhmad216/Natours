@@ -80,6 +80,9 @@ exports.webhookCheckout = async (req, res, next) =>{
     if (event.type === 'checkout.session.completed')
 		createBookingCheckout(event.data.object);
 
+    res.status(200).json({
+        received: true,
+    });
 };
 
 exports.checkIfBooked =  catchAsync(async (req, res, next) =>{
