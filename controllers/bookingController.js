@@ -13,10 +13,10 @@ exports.getCheckoutSession = catchAsync(async (req, res, next) => {
     
     //2) Create Checkout Session
     const session = await stripe.checkout.sessions.create({
-        expand: ['line_items'],     // a must
+			expand: ['line_items'], // a must
 
 			payment_method_types: ['card'],
-            mode: 'payment',
+			mode: 'payment',
 			// success_url: `${req.protocol}://${req.get('host')}/?tour=${req.params.tourId}&user=${req.user.id}&price=${tour.price}`,
 			success_url: `${req.protocol}://${req.get('host')}/my-tours/`,
 			cancel_url: `${req.protocol}://${req.get('host')}/tour/${tour.slug}`,
@@ -24,16 +24,21 @@ exports.getCheckoutSession = catchAsync(async (req, res, next) => {
 			client_reference_id: req.params.tourId, //need to change
 			line_items: [
 				{
-                    price_data: {
-                        unit_amount: tour.price * 100, //amount expected in cents
+					description: `${tour.summary}`,
+					price_data: {
+						unit_amount: tour.price * 100, //amount expected in cents
 						currency: 'usd',
-                        product_data: {
-                            name: `${tour.name} tour`,
-                            description: `${tour.summary}`,
-                            images: [`https://www.natours.dev/img/tours/${tour.imageCover}`], //need to change
-                        },
+						product_data: {
+							name: `${tour.name} tour`,
+							description: `${tour.summary}`,
+							images: [
+								`${req.protocol}://${req.get('host')}/img/tours/${
+									tour.imageCover
+								}`,
+							], //need to change
+						},
 					},
-                    quantity: 1,
+					quantity: 1,
 				},
 			],
 		});
@@ -59,9 +64,9 @@ exports.getCheckoutSession = catchAsync(async (req, res, next) => {
 
 const createBookingCheckout = async (session) => {
     const tour = session.client_reference_id;
-    const user = (await User.findOne({email: session.customer_email})).id;
-    const price = session.line_items[0].price_data.unit_amount / 100;
-    // const price = session.amount_total / 100;
+    const user = (await User.findOne({email: session.customer_email}))._id;
+    // const price = session.line_items[0].price_data.unit_amount / 100;
+    const price = session.amount_total / 100;
 
     await Booking.create({tour, user, price});
 }
