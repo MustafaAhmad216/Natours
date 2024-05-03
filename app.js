@@ -20,8 +20,6 @@ const AppError = require('./utilities/appError');
 //Start Express App
 const app = express();
 
-app.enable('trust proxy')
-
 //Setting up Pug as the template engine
 app.set('view engine', 'pug');
 app.set('views', path.join(__dirname, 'views'));
