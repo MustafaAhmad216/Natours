@@ -4,6 +4,7 @@ import { displayMap } from './leaflet';
 import { logout } from './login';
 import { updateSettings } from './updateSettings';
 import { bookTour } from './stripe';
+import { showAlert } from './alerts';
 
 //Dom Elements
 const leaflet =document.querySelector('#map');
@@ -81,4 +82,10 @@ if (bookBtn) {
         const {tourId} = e.target.dataset;
         bookTour(tourId);
     })
+}
+
+const alertMessage = document.querySelector('body').dataset.alert;
+
+if (alert) {
+    showAlert('success', alertMessage, 10);
 }
