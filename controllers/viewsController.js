@@ -7,12 +7,12 @@ const AppError = require('./../utilities/appError');
 const { ObjectId } = require('mongodb');
 
 exports.alerts = (req, res, next) => {
-	const alert = req.query;
+	const {alert} = req.query;
 	if (alert === 'booking'){
-		res.locals.alert = 'Your Booking was successful! Please check your email for a confirmation.\n If your booking doesn\'t show up right away, please make sure to check later '
+		res.locals.alert = 'Your Booking was successful! Please check your email for a confirmation.\n If your booking doesn\'t show up right away, please make sure to check later!';
 	}
 	next();
-}
+};
 
 exports.getOverview = catchAsync(async (req, res, next) => {
 	//1) Get tour data from collection
