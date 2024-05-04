@@ -7,17 +7,17 @@ const authController = require('./../controllers/authController');
 const router = express.Router();
 
 //Every Pages Must Be Accessed By A LoggedIn User
-router.use(viewsController.alerts)
-router.get('/', authController.isLoggedIn, viewsController.getOverview);
+
+router.get(
+	'/',
+	authController.isLoggedIn,
+	// bookingController.createBookingCheckout,
+	viewsController.getOverview,
+);
 router.get('/tour/:slug', authController.isLoggedIn, viewsController.getTour);
 router.get('/login', authController.isLoggedIn, viewsController.getLoginForm);
 router.get('/me', authController.protect, viewsController.getAccount);
-router.get(
-	'/my-tours',
-	authController.protect, 
-	// bookingController.createBookingCheckout,
-	viewsController.getMyTours,
-);
+router.get('/my-tours', authController.protect, viewsController.getMyTours);
 
 
 
