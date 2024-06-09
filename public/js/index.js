@@ -4,10 +4,12 @@ import { displayMap } from './leaflet';
 import { logout } from './login';
 import { updateSettings } from './updateSettings';
 import { bookTour } from './stripe';
+import { signup } from './signup';
 
 //Dom Elements
 const leaflet =document.querySelector('#map');
 const loginForm = document.querySelector('.form--login');
+const signupForm = document.querySelector('.form--signup');
 const logoutBtn = document.querySelector('.nav__el--logout');
 const userDataForm = document.querySelector('.form-user-data');
 const userPasswordForm = document.querySelector('.form-user-password');
@@ -27,6 +29,21 @@ if(loginForm){
         const email = document.getElementById('email').value;
         const password = document.getElementById('password').value;
         login(email, password);
+    });
+}
+
+if(signupForm){
+    signupForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+
+        //Dom Values
+        const name = document.querySelector('#name').value;
+        const email = document.querySelector('#email').value;
+        const password = document.querySelector('#password').value;
+        const passwordConfirm = document.querySelector('#passwordConfirm').value;
+        console.log(name, email, password, passwordConfirm);
+
+        signup(name, email, password,  passwordConfirm);
     });
 }
 
